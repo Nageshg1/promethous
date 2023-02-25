@@ -1,0 +1,16 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'mysql'
+    static_configs:
+      - targets: ['localhost:9104'] # the default port for mysqld_exporter
+    metrics_path: /metrics
+    params:
+      # enable performance_schema metrics
+      include_system_processes: [ 'true' ]
+    scheme: http
+    basic_auth:
+      username: myusername
+      password: mypassword
